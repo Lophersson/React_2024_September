@@ -1,0 +1,111 @@
+body {
+  background-color: #000000; /* Color de fondo del body */
+  margin: 0; /* Elimina el margen predeterminado */
+  padding: 0;
+  font-family: Arial, sans-serif; /* Fuente del cuerpo */
+}
+
+@keyframes colorTransition {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+h1 {
+  text-align: center;
+  font-style: italic; /* Texto en cursiva */
+  font-weight: bold;  /* Texto más grueso */
+  color: white;
+  font-size: 72px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background: linear-gradient(270deg, #ff00d4, #00ff00, #00ffff, #fbff00, #ffffff); /* Colores del gradiente */
+  background-size: 400% 400%; /* Tamaño del gradiente */
+  -webkit-background-clip: text; /* Clip de fondo para texto en navegadores WebKit */
+  background-clip: text; /* Clip de fondo para texto */
+  color: transparent; /* Hace que el texto sea transparente para mostrar el gradiente */
+  animation: colorTransition 2s ease infinite; /* Aplica la animación de transición de colores */
+}
+
+.centrar {
+  text-align: center;
+}
+
+.acentrar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Imagen con tamaño ajustado */
+img {
+  max-width: 40%;
+  height: auto;
+  margin: 12px;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Estilo del input centrado con bordes redondeados */
+input {
+  display: block;
+  margin: 20px auto; /* Centra el input */
+  padding: 10px;
+  width: 500px; /* Ancho del input */
+  border-radius: 20px; /* Bordes redondeados */
+  font-style: italic; /* Fuente cursiva */
+  font-weight: bolder; /* Peso de la fuente */
+  border: 0px solid #ccc;
+  outline: none;
+  font-size: 20px;
+  /*transition: box-shadow 0.0s ease, border 0.0s ease;*/
+  animation: bounce 1s infinite; /* Aplica la animación de rebote */
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.input-container input {
+  margin: 0 10px;
+  width: 120px;
+  
+}
+
+.botones-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Botones con estilo */
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  /*border: 0px solid #fbff00;*/
+  border-radius: 20px;
+  background-color: #fffce0;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 24px;
+}
+
+/* Hover en los botones */
+button:hover {
+  background-color: #fbff00;
+  transform: scale(1.30);
+  color: black;
+}
