@@ -1,0 +1,46 @@
+import imagen from './assets/img/coru.jpg';
+import './App.css';
+import { useRef } from "react";
+
+function App() {
+  const nombre = "Bienvenidos a la web de Lophersson";
+  const ReferenciaalInput = useRef();
+  const Valorfinal = useRef();
+  const nuevoInput1 = useRef();
+  const nuevoInput2 = useRef();
+
+  const alertar = () => {
+    const textodelInput = ReferenciaalInput.current.value;
+    Valorfinal.current.innerHTML = textodelInput;
+    alert(textodelInput);
+  };
+
+  const multiplicar = () => {
+    const valor1 = parseFloat(nuevoInput1.current.value);
+    const valor2 = parseFloat(nuevoInput2.current.value);
+    if (!isNaN(valor1) && !isNaN(valor2)) {
+      alert(valor1 * valor2);
+    } else {
+      alert('Por favor, ingresa valores numéricos válidos en ambos campos.');
+    }
+  };
+
+  return (
+    <div>
+      <h1 className='centrar'>{nombre}</h1>
+      <img src={imagen} className="acentrar" alt="imagen principal" />
+      <input type="text" placeholder="Nombre" ref={ReferenciaalInput}></input>
+      <div className="input-container">
+        <input type="number" placeholder="Número 1" ref={nuevoInput1}></input>
+        <input type="number" placeholder="Número 2" ref={nuevoInput2}></input>
+      </div>
+      <div className="botones-container">
+        <button onClick={alertar}>Botón 1</button>
+        <button onClick={multiplicar}>Botón 2</button>
+      </div>
+      <p ref={Valorfinal}></p>
+    </div>
+  );
+}
+
+export default App;
