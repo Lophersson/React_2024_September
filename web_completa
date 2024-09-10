@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Lophersson</title>
+  <style>
+    body {
+      background-color: #000000; /* Color de fondo del body */
+      margin: 0; /* Elimina el margen predeterminado */
+      padding: 0;
+      font-family: Arial, sans-serif; /* Fuente del cuerpo */
+    }
+    
+    @keyframes colorTransition {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+    
+    h1 {
+      text-align: center;
+      font-style: italic; /* Texto en cursiva */
+      font-weight: bold;  /* Texto más grueso */
+      color: white;
+      font-size: 72px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background: linear-gradient(270deg, #ff00d4, #00ff00, #00ffff, #fbff00, #ffffff); /* Colores del gradiente */
+      background-size: 400% 400%; /* Tamaño del gradiente */
+      -webkit-background-clip: text; /* Clip de fondo para texto en navegadores WebKit */
+      background-clip: text; /* Clip de fondo para texto */
+      color: transparent; /* Hace que el texto sea transparente para mostrar el gradiente */
+      animation: colorTransition 2s ease infinite; /* Aplica la animación de transición de colores */
+    }
+    
+    .centrar {
+      text-align: center;
+    }
+    
+    .acentrar {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    img {
+      max-width: 40%;
+      height: auto;
+      margin: 12px;
+    }
+    
+    @keyframes bounce {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+    
+    input {
+      display: block;
+      margin: 20px auto; /* Centra el input */
+      padding: 10px;
+      width: 500px; /* Ancho del input reducido a 100px */
+      border-radius: 20px; /* Bordes redondeados */
+      font-style: italic; /* Fuente cursiva */
+      font-weight: bolder; /* Peso de la fuente */
+      border: 0px solid #ccc;
+      outline: none;
+      font-size: 20px;
+      animation: bounce 1s infinite; /* Aplica la animación de rebote */
+    }
+    
+    .input-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    
+    .input-container input {
+      margin: 0 10px;
+      width: 120px; /* Ajuste de ancho a 100px */
+    }
+    
+    .botones-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 20px;
+      background-color: #fffce0;
+      color: rgb(0, 0, 0);
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-weight: 800;
+      font-style: italic;
+      font-size: 24px;
+    }
+    
+    button:hover {
+      background-color: #fbff00;
+      transform: scale(1.30);
+      color: black;
+    }
+  </style>
+  <!-- Include React and ReactDOM from CDN -->
+  <script src="https://unpkg.com/react/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useRef } = React;
+
+    function App() {
+      const nombre = "Bienvenidos a la web de Lophersson";
+      const ReferenciaalInput = useRef();
+      const Valorfinal = useRef();
+      const nuevoInput1 = useRef();
+      const nuevoInput2 = useRef();
+
+      const alertar = () => {
+        const textodelInput = ReferenciaalInput.current.value;
+        Valorfinal.current.innerHTML = textodelInput;
+        alert(textodelInput);
+      };
+
+      const multiplicar = () => {
+        const valor1 = parseFloat(nuevoInput1.current.value);
+        const valor2 = parseFloat(nuevoInput2.current.value);
+        if (!isNaN(valor1) && !isNaN(valor2)) {
+          alert(valor1 * valor2);
+        } else {
+          alert('Por favor, ingresa valores numéricos válidos en ambos campos.');
+        }
+      };
+
+      return (
+        <div>
+          <h1 className='centrar'>{nombre}</h1>
+          <img src="coru.jpg" className="acentrar" alt="imagen principal" />
+          <input type="text" placeholder="Nombre" ref={ReferenciaalInput}></input>
+          <div className="input-container">
+            <input type="number" placeholder="Número 1" ref={nuevoInput1}></input>
+            <input type="number" placeholder="Número 2" ref={nuevoInput2}></input>
+          </div>
+          <div className="botones-container">
+            <button onClick={alertar}>Botón 1</button>
+            <button onClick={multiplicar}>Botón 2</button>
+          </div>
+          <p ref={Valorfinal}></p>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
