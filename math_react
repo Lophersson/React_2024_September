@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+    <style>
+      body {
+        background-color: #000000;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        font-family: "Nanum Pen Script", cursive;
+        font-size: 100px;
+        font-weight: 400;
+        text-align: center;
+        color: white;
+        letter-spacing: -6px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .centrar {
+        text-align: center;
+      }
+
+      .acentrar {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      input {
+        display: block;
+        margin: 20px auto;
+        padding: 10px;
+        width: 500px;
+        height: 80px;
+        border-radius: 20px;
+        font-style: italic;
+        font-weight: bolder;
+        border: 0px solid #ccc;
+        outline: none;
+        font-size: 60px;
+        animation: bounce 1s infinite;
+      }
+
+      .input-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+      }
+
+      .input-container input {
+        margin: 0 10px;
+        width: 100px;
+      }
+
+      .resultado-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 20px;
+        justify-items: center;
+        margin: 12px;
+      }
+
+      .resultado-box {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+        width: 300px;
+      }
+
+      .operacion {
+        font-size: 40px;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+      }
+
+      .resultado {
+        font-size: 40px;
+        color: rgb(255, 251, 0);
+        font-weight: bold;
+      }
+
+      .botones-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 20px;
+        background-color: #fffce0;
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 24px;
+      }
+
+      button:hover {
+        background-color: #fbff00;
+        transform: scale(1.30);
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useRef } = React;
+
+      function App() {
+        const refi1 = useRef();
+        const refi2 = useRef();
+        const refMult = useRef();
+        const refSum = useRef();
+        const refSub = useRef();
+        const refDiv = useRef();
+
+        const handleInput = () => {
+          const val1 = parseFloat(refi1.current.value);
+          const val2 = parseFloat(refi2.current.value);
+
+          if (!isNaN(val1) && !isNaN(val2)) {
+            refMult.current.innerText = \`\${val1 * val2}\`;
+            refSum.current.innerText = \`\${val1 + val2}\`;
+            refSub.current.innerText = \`\${val1 - val2}\`;
+            refDiv.current.innerText = val2 !== 0 ? \`\${(val1 / val2).toFixed(2)}\` : "Error (división por 0)";
+          } else {
+            refMult.current.innerText = "";
+            refSum.current.innerText = "";
+            refSub.current.innerText = "";
+            refDiv.current.innerText = "";
+          }
+        };
+
+        return (
+          <div className="container">
+            <h1 className="centrar">Operaciones Matematicas</h1>
+            <div className="input-container">
+              <input ref={refi1} type="number" onInput={handleInput} />
+              <input ref={refi2} type="number" onInput={handleInput} />
+            </div>
+
+            <div className="resultado-container">
+              <div className="resultado-box">
+                <p className="operacion">Suma</p>
+              </div>
+              <div className="resultado-box">
+                <p className="operacion">Resta</p>
+              </div>
+              <div className="resultado-box">
+                <p className="operacion">Multiplicación</p>
+              </div>
+              <div className="resultado-box">
+                <p className="operacion">División</p>
+              </div>
+
+              <div className="resultado-box">
+                <p ref={refSum} className="resultado">0</p>
+              </div>
+              <div className="resultado-box">
+                <p ref={refSub} className="resultado">0</p>
+              </div>
+              <div className="resultado-box">
+                <p ref={refMult} className="resultado">0</p>
+              </div>
+              <div className="resultado-box">
+                <p ref={refDiv} className="resultado">0</p>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
