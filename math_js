@@ -1,0 +1,71 @@
+import './App.css';
+import { useRef } from "react";
+
+function App() {
+  const refi1 = useRef();
+  const refi2 = useRef();
+  const refMult = useRef();
+  const refSum = useRef();
+  const refSub = useRef();
+  const refDiv = useRef();
+
+  const handleInput = () => {
+    const val1 = parseFloat(refi1.current.value);
+    const val2 = parseFloat(refi2.current.value);
+
+    if (!isNaN(val1) && !isNaN(val2)) {
+      refMult.current.innerText = `${val1 * val2}`;
+      refSum.current.innerText = `${val1 + val2}`;
+      refSub.current.innerText = `${val1 - val2}`;
+      refDiv.current.innerText = val2 !== 0 ? `${(val1 / val2).toFixed(2)}` : "Error (división por 0)";
+    } else {
+      refMult.current.innerText = "";
+      refSum.current.innerText = "";
+      refSub.current.innerText = "";
+      refDiv.current.innerText = "";
+    }
+  };
+
+  return (
+    <div className="container">
+      <h1 className="centrar">Operaciones Matematicas</h1>
+      <div className="input-container">
+        <input ref={refi1} type="number" onInput={handleInput} />
+        <input ref={refi2} type="number" onInput={handleInput} />
+      </div>
+
+      {/* Tabla de resultados */}
+      <div className="resultado-container">
+        {/* Fila de nombres de las operaciones */}
+        <div className="resultado-box">
+          <p className="operacion">Suma</p>
+        </div>
+        <div className="resultado-box">
+          <p className="operacion">Resta</p>
+        </div>
+        <div className="resultado-box">
+          <p className="operacion">Multiplicación</p>
+        </div>
+        <div className="resultado-box">
+          <p className="operacion">División</p>
+        </div>
+
+        {/* Fila de resultados */}
+        <div className="resultado-box">
+          <p ref={refSum} className="resultado">0</p>
+        </div>
+        <div className="resultado-box">
+          <p ref={refSub} className="resultado">0</p>
+        </div>
+        <div className="resultado-box">
+          <p ref={refMult} className="resultado">0</p>
+        </div>
+        <div className="resultado-box">
+          <p ref={refDiv} className="resultado">0</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
