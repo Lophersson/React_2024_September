@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <title>Operaciones Matemáticas</title>
+  <style>
+    body {
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-family: "Nanum Pen Script", cursive;
+      font-size: 100px;
+      font-weight: 400;
+      text-align: center;
+      color: white;
+      letter-spacing: -6px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .centrar {
+      text-align: center;
+    }
+
+    .acentrar {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    input {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      width: 100px;
+      height: 80px;
+      border-radius: 20px;
+      font-style: italic;
+      font-weight: bolder;
+      border: 0px solid #ccc;
+      outline: none;
+      font-size: 60px;
+      animation: bounce 1s infinite;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+    }
+
+    .resultado-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 20px;
+      justify-items: center;
+      margin: 12px;
+    }
+
+    .resultado-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .operacion {
+      font-size: 40px;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+    }
+
+    .resultado {
+      font-size: 40px;
+      color: rgb(255, 251, 0);
+      font-weight: bold;
+    }
+
+    .botones-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 20px;
+      background-color: #fffce0;
+      color: rgb(0, 0, 0);
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-weight: 800;
+      font-style: italic;
+      font-size: 24px;
+    }
+
+    button:hover {
+      background-color: #fbff00;
+      transform: scale(1.30);
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="centrar">Operaciones Matemáticas</h1>
+  <div class="input-container">
+    <input id="input1" type="number" />
+    <input id="input2" type="number" />
+  </div>
+
+  <div class="resultado-container">
+    <div class="resultado-box">
+      <p class="operacion">Suma</p>
+    </div>
+    <div class="resultado-box">
+      <p class="operacion">Resta</p>
+    </div>
+    <div class="resultado-box">
+      <p class="operacion">Multiplicación</p>
+    </div>
+    <div class="resultado-box">
+      <p class="operacion">División</p>
+    </div>
+
+    <div class="resultado-box">
+      <p id="resultSum" class="resultado">0</p>
+    </div>
+    <div class="resultado-box">
+      <p id="resultSub" class="resultado">0</p>
+    </div>
+    <div class="resultado-box">
+      <p id="resultMult" class="resultado">0</p>
+    </div>
+    <div class="resultado-box">
+      <p id="resultDiv" class="resultado">0</p>
+    </div>
+  </div>
+
+  <script>
+    const input1 = document.getElementById('input1');
+    const input2 = document.getElementById('input2');
+    const resultSum = document.getElementById('resultSum');
+    const resultSub = document.getElementById('resultSub');
+    const resultMult = document.getElementById('resultMult');
+    const resultDiv = document.getElementById('resultDiv');
+
+    function handleInput() {
+      const val1 = parseFloat(input1.value);
+      const val2 = parseFloat(input2.value);
+
+      if (!isNaN(val1) && !isNaN(val2)) {
+        resultSum.textContent = `${val1 + val2}`;
+        resultSub.textContent = `${val1 - val2}`;
+        resultMult.textContent = `${val1 * val2}`;
+        resultDiv.textContent = val2 !== 0 ? `${(val1 / val2).toFixed(2)}` : "Error (división por 0)";
+      } else {
+        resultSum.textContent = "";
+        resultSub.textContent = "";
+        resultMult.textContent = "";
+        resultDiv.textContent = "";
+      }
+    }
+
+    input1.addEventListener('input', handleInput);
+    input2.addEventListener('input', handleInput);
+  </script>
+</body>
+</html>
